@@ -1,4 +1,5 @@
 const puppeteer = require('puppeteer')
+var XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
 
 async function scrape(url){
     const browser = await puppeteer.launch()
@@ -13,7 +14,7 @@ async function scrape(url){
     //NEEDS TO BE FIXED TO GO UNTIL END. CURRENTLY STOPPING AFTER 5 ITERS
     var songs = []
     var a = 0
-    while(a < 5){
+    while(a < 1){
         await autoScroll(page)
         a++
     }
@@ -65,5 +66,30 @@ async function autoScroll(page){
     });
 }
 
-scrape('artlist.io')
+// async function upload(){
+//     scrapedSongs = await scrape('https://artlist.io/')
+//     for(var i = 0;)
+// }
+
+// upload()
 //upload what has been scraped
+function httpPOST(theUrl)
+{
+    var xmlHttp = new XMLHttpRequest();
+    var jsonObj = [{
+        'title': "hi",
+        'genre': "country"
+    } ]
+    xmlHttp.open( "POST", theUrl, false ); // false for synchronous request
+    xmlHttp.setRequestHeader("Content-Type", "application/json; charset=UTF-8")
+    xmlHttp.onreadystatechange = function () {
+        if (xmlHttp.readyState === 4 && xmlHttp.status === 200) {
+            var res = JSON.parse(xmlHttp.response);
+            console.log(res);
+        }
+    };
+    xmlHttp.send( JSON.stringify(jsonObj) );
+    return xmlHttp.responseText;
+}
+
+console.log(httpPOST("http://localhost:3000/"))

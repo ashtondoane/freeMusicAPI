@@ -3,11 +3,11 @@ const mongoose = require('mongoose')
 const songSchema = new mongoose.Schema({
     title: {
         type: String,
-        require: true
+        require: false
     },
     genre: {
         type: Array,
-        require: true
+        require: false
     },
     tempo: {
         type: Number,
@@ -27,7 +27,7 @@ const songSchema = new mongoose.Schema({
     },
     link: {
         type: String,
-        require: true
+        require: false
     }
 })
 
