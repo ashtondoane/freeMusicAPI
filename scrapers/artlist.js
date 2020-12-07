@@ -1,5 +1,4 @@
 const puppeteer = require('puppeteer')
-const router = require('songs.js')
 
 async function scrape(url){
     const browser = await puppeteer.launch()
@@ -66,13 +65,5 @@ async function autoScroll(page){
     });
 }
 
-async function addToDB(){
-    var scrapedSongs = await scrape('https://artlist.io/')
-    //For every song in the list, if it doesn't exist in the database, add it
-    for(var i = 0; i < scrapedSongs.length; i++){
-        router.post()
-    }
-}
-
-addToDB()
+scrape('artlist.io')
 //upload what has been scraped
